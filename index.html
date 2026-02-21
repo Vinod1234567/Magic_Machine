@@ -197,7 +197,55 @@ input {
   cursor: pointer;
   font-weight: bold;
 }
+
+/* Mobile Landscape Layout */
+@media (max-width: 768px) and (orientation: landscape) {
+
+body {
+  height: 100vh;
+  padding: 10px;
+}
+
+.container {
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.left-panel {
+  flex: 1;
+}
+
+.right-panel {
+  flex: 2;
+  gap: 10px;
+}
+
+.glass, .result-glass, #bucket {
+  width: 100px;
+  height: 140px;
+}
+
+.kid-emoji {
+  font-size: 50px;
+}
+
+.apple {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+}
 </style>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
