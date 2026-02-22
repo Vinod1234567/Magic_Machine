@@ -242,9 +242,9 @@
     color: black;
   }
   
-  .mode-btn.active {
-    background: #2ecc71;   /* green for selected */
-    color: white;
+  .mode-toggle .mode-btn.active {
+    background: #2ecc71 !important;
+    color: white !important;
   }
   
   .mode-btn.disabled {
