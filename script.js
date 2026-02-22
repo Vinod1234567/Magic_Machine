@@ -9,24 +9,33 @@ const conversation = document.getElementById("conversation");
 const countBtn = document.getElementById("countBtn");
 const resetBtn = document.getElementById("resetBtn");
 const startStoryBtn = document.getElementById("startStoryBtn");
+const addModeBtn = document.getElementById("addMode");
+const subModeBtn = document.getElementById("subMode");
+const symbol = document.querySelector(".symbol");
 
+let mode = "add"; // default mode
 let step = 1;
 inputA.disabled = true;
 inputB.disabled = true;
 countBtn.disabled = true;
 
 // ---------- APPLE CREATION ----------
-function createApple() {
+function createApple(number) {
   const apple = document.createElement("div");
   apple.className = "apple";
-  apple.innerText = "🍎";
+
+  apple.innerHTML = `
+    <span class="apple-emoji">🍎</span>
+    <span class="apple-number">${number}</span>
+  `;
+
   return apple;
 }
 
 function fillGlass(glass, count) {
   glass.innerHTML = "";
-  for (let i = 0; i < count; i++) {
-    glass.appendChild(createApple());
+  for (let i = 1; i <= count; i++) {
+    glass.appendChild(createApple(i));
   }
 }
 
@@ -38,15 +47,22 @@ inputA.addEventListener("change", () => {
   fillGlass(glass1, value);
 
   if (value > 0) {
-    const message = "Yay! Thank you Mom! Can I have some more apples please?";
-    conversation.innerHTML = "👦 Kid: " + message;
-    playLine("yayThankMom");
-    inputA.disabled = true;
-    step = 2;
-    yayThankMom.onended = () => {
+    if (mode === "add") {
+      const message = "Yay! Thank you Mom! Can I have some more apples please?";
+      conversation.innerHTML = "👦 Kid: " + message;
+      playLine("yayThankMom");
+      yayThankMom.onended = () => {
         inputB.disabled = false;
         inputB.focus();
     };
+    } else {
+      const message = "Yay! Thank you Mom! Let me give some apples to Didi.";
+      conversation.innerHTML = "👦 Kid: " + message;
+      inputB.disabled = false;
+      inputB.focus();
+    }
+    inputA.disabled = true;
+    step = 2;
   }
 });
 
@@ -56,28 +72,44 @@ inputB.addEventListener("change", () => {
   fillGlass(glass2, value);
 
   if (value > 0 && step === 2) {
-    conversation.innerHTML =
+    if (mode === "add") {
+      conversation.innerHTML =
       "👦 Kid: Wow! Now I have more apples! Let me count them!";
       playLine("appleCount");
-      inputB.disabled = true;
       appleCount.onended = () => {
         countBtn.disabled = false;
-    };
+      };
+    } else {
+      conversation.innerHTML =
+      "👦 Kid: Now Let me count how many apples I have left.";
+      countBtn.disabled = false;
+    }
+    
+      inputB.disabled = true;
+      
   }
 });
 
 countBtn.addEventListener("click", () => {
   const num1 = parseInt(inputA.value) || 0;
   const num2 = parseInt(inputB.value) || 0;
-  const total = num1 + num2;
+  let total;
+
+  if (mode === "add") {
+    total = num1 + num2;
+  } else {
+    total = num1 - num2;
+
+    if (total < 0) total = 0; // prevent negative apples
+  }
 
   resultGlass.innerHTML = "";
 
   conversation.innerHTML = "👦 Kid: Counting my apples...";
 
   setTimeout(() => {
-    for (let i = 0; i < total; i++) {
-      resultGlass.appendChild(createApple());
+    for (let i = 1; i <= total; i++) {
+      resultGlass.appendChild(createApple(i));
     }
 
     resultText.innerText = total;
@@ -99,6 +131,8 @@ resetBtn.addEventListener("click", () => {
   conversation.innerHTML =
     "👦 Kid: Mom, can I have some apples please?";
   startStoryBtn.disabled = false;  // enable again
+  inputA.disabled = true
+  inputB.disabled = true
 });
 
 startStoryBtn.addEventListener("click", () => {
@@ -116,9 +150,9 @@ startStoryBtn.addEventListener("click", () => {
   });
   
 // ---------- INITIAL BUCKET ----------
-for (let i = 0; i < 20; i++) {
-  bucket.appendChild(createApple());
-}
+// for (let i = 0; i < 20; i++) {
+//   bucket.appendChild(createApple(i+1));
+// }
 
 // function speak(text) {
 //     if ('speechSynthesis' in window) {
@@ -159,3 +193,21 @@ for (let i = 0; i < 20; i++) {
     audio.currentTime = 0;  // restart if already played
     audio.play();
   }
+
+  addModeBtn.addEventListener("click", () => {
+    mode = "add";
+  
+    addModeBtn.classList.add("active");
+    subModeBtn.classList.remove("active");
+  
+    symbol.innerText = "+";   // change symbol
+  });
+  
+  subModeBtn.addEventListener("click", () => {
+    mode = "sub";
+  
+    subModeBtn.classList.add("active");
+    addModeBtn.classList.remove("active");
+  
+    symbol.innerText = "−";   // change symbol to minus
+  });

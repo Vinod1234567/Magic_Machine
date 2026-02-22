@@ -57,12 +57,12 @@
     overflow-x: hidden;
   
     display: grid;                 /* 🔥 CHANGE THIS */
-    grid-template-columns: repeat(4, 1fr); /* 4 apples per row */
+    grid-template-columns: repeat(3, 1fr); /* 4 apples per row */
     align-content: start;
   
     padding: 6px;
   }
-  
+
   .apple {
     font-size: 24px;
     margin: 4px;
@@ -198,4 +198,55 @@
     button {
       width: 140px;
     }
+  }
+
+  .apple {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .apple-emoji {
+    font-size: 28px;
+  }
+  
+  .apple-number {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    pointer-events: none;
+  
+    /* Center number exactly on apple */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .mode-toggle {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .mode-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #dcdcdc;
+    color: black;
+  }
+  
+  .mode-btn.active {
+    background: #2ecc71;   /* green for selected */
+    color: white;
+  }
+  
+  .mode-btn.disabled {
+    opacity: 0.5;
   }
