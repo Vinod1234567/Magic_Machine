@@ -7,12 +7,11 @@
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #4e73df, #1cc88a);
     color: white;
-  
+    overflow-y: auto;
+
     /* Added improvements */
     min-height: 100vh;          /* Full height */
     overflow-x: hidden;         /* Prevent horizontal scroll */
-    display: flex;              /* Helps center layout properly */
-    flex-direction: column;
   }
   
   .game-wrapper {
@@ -20,6 +19,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 60px;
   }
   
   .title {
@@ -128,6 +128,7 @@
     .game-wrapper {
       width: 100%;
       padding: 15px;
+      padding-bottom: 60px; 
     }
   
     /* Stack items vertically */
@@ -145,14 +146,14 @@
     /* Improve right panel alignment */
     .right-panel {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;   /* reduced gap */
+      flex-direction: column;   /* STACK PROPERLY */
+      align-items: center;
+      gap: 20px;
     }
   
     /* Hide big + symbol */
     .symbol {
-      display: none;
+      font-size: 28px;
     }
   
     /* Slightly smaller glasses */
