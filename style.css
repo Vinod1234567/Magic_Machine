@@ -140,6 +140,17 @@
     /* Make panels full width */
     .left-panel,
     .right-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .left-panel {
+      width: 160px;
+    }
+    
+    .left-panel .glass,
+    .left-panel .reset-btn {
       width: 100%;
     }
   
