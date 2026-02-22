@@ -43,17 +43,23 @@
     flex-wrap: wrap;
   }
   
-  .glass, .result-glass {
+  .glass,
+  .result-glass {
     width: 140px;
     height: 180px;
+  
     border-radius: 15px;
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(8px);
     border: 2px solid rgba(255,255,255,0.4);
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
+  
+    overflow-y: auto;
+    overflow-x: hidden;
+  
+    display: grid;                 /* 🔥 CHANGE THIS */
+    grid-template-columns: repeat(4, 1fr); /* 4 apples per row */
+    align-content: start;
+  
     padding: 6px;
   }
   
