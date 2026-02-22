@@ -6,7 +6,8 @@ body {
   }
   
   .game-wrapper {
-    width: 1200px;
+    max-width: 1200px;
+    width: 95%;
     margin: 0 auto;
     padding: 30px;
   }
@@ -88,13 +89,6 @@ body {
     background: #ff4757;
     color: white;
   }
-  
-  @media (max-width: 1200px) {
-    .game-wrapper {
-      transform: scale(calc(100vw / 1200));
-      transform-origin: top center;
-    }
-  }
 
   .start-btn {
     display: block;
@@ -111,4 +105,37 @@ body {
   .start-btn:disabled {
     background: gray;
     cursor: not-allowed;
+  }
+
+  /* ============================= */
+/* RESPONSIVE FIX */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .container {
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    .symbol {
+      display: none;
+    }
+  
+    .glass, .result-glass {
+      width: 120px;
+      height: 160px;
+    }
+  
+    input {
+      width: 120px;
+    }
+  
+    .title {
+      font-size: 22px;
+    }
+  
+    .story-box {
+      font-size: 15px;
+    }
   }
