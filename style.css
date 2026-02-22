@@ -1,15 +1,25 @@
-body {
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #4e73df, #1cc88a);
     color: white;
+  
+    /* Added improvements */
+    min-height: 100vh;          /* Full height */
+    overflow-x: hidden;         /* Prevent horizontal scroll */
+    display: flex;              /* Helps center layout properly */
+    flex-direction: column;
   }
   
   .game-wrapper {
     max-width: 1200px;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
-    padding: 30px;
+    padding: 20px;
   }
   
   .title {
@@ -27,9 +37,10 @@ body {
   
   .container {
     display: flex;
-    gap: 60px;
+    gap: 40px;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
   }
   
   .glass, .result-glass {
@@ -113,29 +124,60 @@ body {
 
 @media (max-width: 768px) {
 
-    .container {
-      flex-direction: column;
-      gap: 30px;
+    /* Reduce outer spacing */
+    .game-wrapper {
+      width: 100%;
+      padding: 15px;
     }
   
+    /* Stack items vertically */
+    .container {
+      flex-direction: column;
+      gap: 25px;   /* reduced gap */
+    }
+  
+    /* Make panels full width */
+    .left-panel,
+    .right-panel {
+      width: 100%;
+    }
+  
+    /* Improve right panel alignment */
+    .right-panel {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;   /* reduced gap */
+    }
+  
+    /* Hide big + symbol */
     .symbol {
       display: none;
     }
   
-    .glass, .result-glass {
-      width: 120px;
-      height: 160px;
+    /* Slightly smaller glasses */
+    .glass,
+    .result-glass {
+      width: 110px;     /* reduced */
+      height: 150px;    /* reduced */
     }
   
+    /* Make input bigger for touch */
     input {
-      width: 120px;
+      width: 140px;   /* slightly bigger for usability */
     }
   
+    /* Improve text scaling */
     .title {
-      font-size: 22px;
+      font-size: 20px;
     }
   
     .story-box {
-      font-size: 15px;
+      font-size: 14px;
+    }
+  
+    /* Make buttons full width for better UX */
+    button {
+      width: 140px;
     }
   }
