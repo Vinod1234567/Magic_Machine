@@ -58,6 +58,7 @@ inputA.addEventListener("change", () => {
     } else {
       const message = "Yay! Thank you Mom! Let me give some apples to Didi.";
       conversation.innerHTML = "👦 Kid: " + message;
+      playLine("letmegiveapple");
       inputB.disabled = false;
       inputB.focus();
     }
@@ -83,14 +84,15 @@ inputB.addEventListener("change", () => {
       const valueA = parseInt(inputA.value) || 0;
       if (value > valueA) {
           conversation.innerHTML =
-        "👩 Mom: Oops! You don't have that many apples. Try a smaller number 😊";
-
+        "👩 Kid: Oops! We don’t have that many apples. Let me try a smaller number 😊";
+        playLine("oopsNotThatManyApple");
         inputB.value = "";       // clear wrong input
         fillGlass(glass2, 0);    // reset second glass
         return;                  // stop further execution
       }
       conversation.innerHTML =
       "👦 Kid: Now Let me count how many apples I have left.";
+      playLine("appleHaveLeft");
       countBtn.disabled = false;
     }
     
