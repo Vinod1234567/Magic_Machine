@@ -151,9 +151,9 @@
       align-items: center;
     }
 
-    .left-panel {
+    /* .left-panel {
       width: 160px;
-    }
+    } */
     
     .left-panel .glass,
     .left-panel .reset-btn {
@@ -176,7 +176,8 @@
     /* Slightly smaller glasses */
     .glass,
     .result-glass {
-      width: 110px;     /* reduced */
+      width: 100%;     /* reduced */
+      max-width: 250px;
       height: 150px;    /* reduced */
     }
   
