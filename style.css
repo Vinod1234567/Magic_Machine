@@ -45,7 +45,7 @@
   
   .glass,
   .result-glass {
-    width: 160px;
+    width: 200px;
     height: 180px;
   
     border-radius: 15px;
@@ -80,7 +80,7 @@
   }
   
   input {
-    width: 100px;
+    width: 200px;
     padding: 6px;
     border-radius: 6px;
     border: none;
@@ -142,14 +142,6 @@
       flex-direction: column;
       gap: 25px;   /* reduced gap */
     }
-  
-    /* Make panels full width */
-    .left-panel,
-    .right-panel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
 
     /* .left-panel {
       width: 160px;
@@ -176,14 +168,13 @@
     /* Slightly smaller glasses */
     .glass,
     .result-glass {
-      width: 100%;     /* reduced */
-      max-width: 250px;
+      width: 200px;     /* reduced */
       height: 150px;    /* reduced */
     }
   
     /* Make input bigger for touch */
     input {
-      width: 140px;   /* slightly bigger for usability */
+      width: 200px;   /* slightly bigger for usability */
     }
   
     /* Improve text scaling */
