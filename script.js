@@ -80,6 +80,15 @@ inputB.addEventListener("change", () => {
         countBtn.disabled = false;
       };
     } else {
+      const valueA = parseInt(inputA.value) || 0;
+      if (value > valueA) {
+          conversation.innerHTML =
+        "👩 Mom: Oops! You don't have that many apples. Try a smaller number 😊";
+
+        inputB.value = "";       // clear wrong input
+        fillGlass(glass2, 0);    // reset second glass
+        return;                  // stop further execution
+      }
       conversation.innerHTML =
       "👦 Kid: Now Let me count how many apples I have left.";
       countBtn.disabled = false;
@@ -91,6 +100,9 @@ inputB.addEventListener("change", () => {
 });
 
 countBtn.addEventListener("click", () => {
+  countBtn.disabled = true;
+  countBtn.innerHTML = '<span class="spinner"></span> Counting...';
+
   const num1 = parseInt(inputA.value) || 0;
   const num2 = parseInt(inputB.value) || 0;
   let total;
@@ -116,6 +128,9 @@ countBtn.addEventListener("click", () => {
     conversation.innerHTML =
       "🎉 Kid: I counted them! This is amazing! 👏👏🎉";
       playLine("countedThem");
+      // 🟢 Restore button
+    countBtn.innerHTML = "Count Apples 🍎";
+    countBtn.disabled = false;
   }, 800);
 });
 
@@ -211,3 +226,19 @@ startStoryBtn.addEventListener("click", () => {
   
     symbol.innerText = "−";   // change symbol to minus
   });
+
+  function setupIntegerInput(input) {
+
+    input.addEventListener("keydown", (e) => {
+      if ([".", "e", "-", "+"].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/\D/g, "");
+    });
+  }
+
+  setupIntegerInput(inputA);
+  setupIntegerInput(inputB);

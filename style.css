@@ -242,3 +242,19 @@
   .mode-btn.disabled {
     opacity: 0.5;
   }
+
+  .spinner {
+    border: 3px solid white;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    animation: spin 0.7s linear infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
