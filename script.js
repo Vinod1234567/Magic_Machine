@@ -72,7 +72,7 @@ inputB.addEventListener("change", () => {
   const value = parseInt(inputB.value) || 0;
   fillGlass(glass2, value);
 
-  if (value > 0 && step === 2) {
+  if (value >= 0 && step === 2) {
     if (mode === "add") {
       conversation.innerHTML =
       "👦 Kid: Wow! Now I have more apples! Let me count them!";
