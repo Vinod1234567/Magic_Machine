@@ -46,7 +46,7 @@ inputA.addEventListener("change", () => {
   const value = parseInt(inputA.value) || 0;
   fillGlass(glass1, value);
 
-  if (value > 0) {
+  if (value >= 0) {
     if (mode === "add") {
       const message = "Yay! Thank you Mom! Can I have some more apples please?";
       conversation.innerHTML = "👦 Kid: " + message;
@@ -138,6 +138,10 @@ countBtn.addEventListener("click", () => {
 
 // ---------- RESET ----------
 resetBtn.addEventListener("click", () => {
+  resetApp();
+});
+
+function resetApp() {
   inputA.value = "";
   inputB.value = "";
   glass1.innerHTML = "";
@@ -150,7 +154,7 @@ resetBtn.addEventListener("click", () => {
   startStoryBtn.disabled = false;  // enable again
   inputA.disabled = true
   inputB.disabled = true
-});
+}
 
 startStoryBtn.addEventListener("click", () => {
     const firstMessage = "Mom, can I have some apples please?";
@@ -218,6 +222,7 @@ startStoryBtn.addEventListener("click", () => {
     subModeBtn.classList.remove("active");
   
     symbol.innerText = "+";   // change symbol
+    resetApp();
   });
   
   subModeBtn.addEventListener("click", () => {
@@ -227,6 +232,7 @@ startStoryBtn.addEventListener("click", () => {
     addModeBtn.classList.remove("active");
   
     symbol.innerText = "−";   // change symbol to minus
+    resetApp();
   });
 
   function setupIntegerInput(input) {
